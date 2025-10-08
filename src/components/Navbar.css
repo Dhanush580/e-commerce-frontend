@@ -987,6 +987,55 @@
   }
 }
 
+/* Small phones like Galaxy A32 (~412px wide) */
+@media screen and (max-width: 430px) {
+  .navbar-container {
+    height: 58px;
+    padding: 0 12px;
+    gap: 12px;
+  }
+
+  .navbar-logo {
+    font-size: 17px;
+    padding: 4px 8px;
+  }
+
+  .mobile-actions {
+    gap: 8px;
+  }
+
+  .search-btn,
+  .cart-btn,
+  .wishlist-btn,
+  .profile-btn {
+    width: 34px !important;
+    height: 34px !important;
+    min-width: 34px !important;
+    min-height: 34px !important;
+    max-width: 34px !important;
+    max-height: 34px !important;
+    font-size: 14px !important;
+  }
+
+  .cart-count,
+  .wishlist-count {
+    width: 16px;
+    height: 16px;
+    font-size: 9px;
+    top: -4px;
+    right: -4px;
+  }
+
+  /* Align slide-in menu/backdrop with slightly reduced navbar height */
+  .navbar-menu {
+    top: 58px;
+    height: calc(100vh - 58px);
+  }
+  .menu-backdrop {
+    top: 58px;
+  }
+}
+
 /* Extra-small phones (e.g., 360x740): tighten spacing and icon sizes */
 @media screen and (max-width: 380px) {
   .navbar-container {
