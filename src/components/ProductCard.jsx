@@ -55,10 +55,11 @@ const ProductCard = ({ product }) => {
   // Always pass a normalized product object with a unique id
   const getNormalizedProduct = () => {
     const id = product._id || product.productId || product.id;
+    const safeImage = resolveImageUrl(product);
     return {
       ...product,
       id,
-      image: product.image || (Array.isArray(product.images) && product.images[0]) || '',
+      image: safeImage,
     };
   };
 

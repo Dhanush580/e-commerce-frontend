@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { FaShoppingCart, FaArrowLeft, FaTrash, FaPlus, FaMinus } from 'react-icons/fa';
 import { useCart } from '../contexts/CartContext';
 import './Cart.css';
+import { resolveImageUrl } from '../utils/imageUrl';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../contexts/AuthContext';
 
@@ -105,7 +106,7 @@ const Cart = () => {
               <div className="wp-cart-item" key={item.id}>
                 <div className="wp-cart-item-image-container">
                   <img 
-                    src={item.image} 
+                    src={resolveImageUrl(item)} 
                     alt={item.name} 
                     className="wp-cart-item-image"
                   />

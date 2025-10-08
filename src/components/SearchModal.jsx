@@ -6,6 +6,7 @@ import ProductQuickViewDialog from './ProductQuickViewDialog';
 import { useCart } from '../contexts/CartContext';
 import { useWishlist } from '../contexts/WishlistContext';
 import { useAuth } from '../contexts/AuthContext';
+import { resolveImageUrl } from '../utils/imageUrl';
 
 const SearchModal = ({ isOpen, onClose }) => {
   const [searchQuery, setSearchQuery] = useState('');
@@ -24,7 +25,8 @@ const SearchModal = ({ isOpen, onClose }) => {
   const normalizeProduct = (p) => {
     if (!p) return p;
     const id = p._id || p.productId || p.id;
-    return { ...p, id, image: p.image || (Array.isArray(p.images) ? p.images[0] : undefined) };
+    const img = p.image || (Array.isArray(p.images) ? p.images[0] : undefined);
+    return { ...p, id, image: img };
   };
 
   const categories = [
@@ -115,13 +117,14 @@ const SearchModal = ({ isOpen, onClose }) => {
       .slice(0, 8);
 
     matchingProducts.forEach(product => {
+      const image = resolveImageUrl(product);
       suggestions.push({
         type: 'product',
         text: product.name,
         path: `/product/${product.productId}`,
         icon: <FaShoppingBag />,
         subtitle: `₹${product.price} • ${product.category}`,
-        image: product.images?.[0],
+        image,
         product
       });
     });
