@@ -150,6 +150,17 @@ const Navbar = () => {
         {/* Menu Links - Center (desktop); slides in on mobile */}
         <div className={`navbar-menu ${isMenuOpen ? 'active' : ''}`}>
           <MenuLinks />
+          {isAuthenticated && (
+            <Link
+              to="/user"
+              className="mobile-profile-shortcut"
+              aria-label="Open Profile"
+              onClick={() => { setIsMenuOpen(false); setMobileDropdown({ clothing: false, accessories: false }); }}
+            >
+              <FaUser className="mobile-profile-icon" />
+              <span className="mobile-profile-email">{user?.email || 'Profile'}</span>
+            </Link>
+          )}
         </div>
         {/* Mobile menu backdrop (closes menu on tap) */}
         <div
@@ -253,20 +264,6 @@ const Navbar = () => {
         <Login />
       </LoginModal>
     </nav>
-
-    {/* Floating Profile Shortcut (bottom-left) when logged in */}
-    {isAuthenticated && (
-      <Link
-        to="/user"
-        className={`floating-profile ${isMenuOpen ? 'hidden' : ''}`}
-        aria-label="Open Profile"
-        onClick={() => setIsMenuOpen(false)}
-      >
-        <FaUser className="floating-profile-icon" />
-        <span className="floating-profile-email">{user?.email || 'Profile'}</span>
-      </Link>
-    )}
-
     </>
   );
 };
