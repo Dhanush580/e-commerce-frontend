@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import ProductCard from '../components/ProductCard';
 import FilterPanel from '../components/FilterPanel';
+import Pagination from '../components/Pagination';
 import { useProductFilters } from '../hooks/useProductFilters';
 import './CategoryPage.css';
 
@@ -9,6 +10,8 @@ const Sarees = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
   const [isFilterOpen, setIsFilterOpen] = useState(false);
+  const [currentPage, setCurrentPage] = useState(1);
+  const PAGE_SIZE = 20;
 
   const {
     filteredProducts,
@@ -19,6 +22,11 @@ const Sarees = () => {
   useEffect(() => {
     fetchSarees();
   }, []);
+
+  // Reset to first page when filters change
+  useEffect(() => {
+    setCurrentPage(1);
+  }, [filteredProducts]);
 
   const fetchSarees = async () => {
     try {
@@ -99,20 +107,30 @@ const Sarees = () => {
                   <p>No sarees match your current filters. Try adjusting your search criteria.</p>
                 </div>
               ) : (
-                <div className="products-grid">
-                  {filteredProducts.map(product => (
-                    <ProductCard key={product._id} product={{
-                      productId: product.productId,
-                      id: product._id,
-                      name: product.name,
-                      price: product.price,
-                      images: product.images || [],
-                      image: product.images?.[0] || product.image,
-                      inStock: product.inStock,
-                      description: product.description,
-                    }} />
-                  ))}
-                </div>
+                <>
+                  <div className="products-grid">
+                    {filteredProducts
+                      .slice((currentPage - 1) * PAGE_SIZE, currentPage * PAGE_SIZE)
+                      .map(product => (
+                        <ProductCard key={product._id} product={{
+                          productId: product.productId,
+                          id: product._id,
+                          name: product.name,
+                          price: product.price,
+                          images: product.images || [],
+                          image: product.images?.[0] || product.image,
+                          inStock: product.inStock,
+                          description: product.description,
+                        }} />
+                      ))}
+                  </div>
+                  <Pagination
+                    currentPage={currentPage}
+                    totalItems={filteredProducts.length}
+                    pageSize={PAGE_SIZE}
+                    onPageChange={setCurrentPage}
+                  />
+                </>
               )}
             </main>
           </div>

@@ -2,6 +2,7 @@
 import React, { useEffect, useState, useMemo } from 'react';
 import ProductCard from '../components/ProductCard';
 import FilterPanel from '../components/FilterPanel';
+import Pagination from '../components/Pagination';
 import './CategoryPage.css';
 
 
@@ -16,6 +17,8 @@ const Shop = () => {
     sortBy: 'name',
   });
   const [isFilterOpen, setIsFilterOpen] = useState(false);
+  const [currentPage, setCurrentPage] = useState(1);
+  const PAGE_SIZE = 20;
 
   useEffect(() => {
     const fetchProducts = async () => {
@@ -82,6 +85,16 @@ const Shop = () => {
       }
     });
   }, [products, filters]);
+
+  // Reset to page 1 when filters or product list changes
+  useEffect(() => {
+    setCurrentPage(1);
+  }, [filters, products]);
+
+  const paginatedProducts = useMemo(() => {
+    const start = (currentPage - 1) * PAGE_SIZE;
+    return filteredProducts.slice(start, start + PAGE_SIZE);
+  }, [filteredProducts, currentPage]);
 
   // Handle filter changes
   const handleFilterChange = (newFilters) => {
@@ -169,11 +182,19 @@ const Shop = () => {
                   <p>No products match your current filters. Try adjusting your search criteria.</p>
                 </div>
               ) : (
-                <div className="products-grid">
-                  {filteredProducts.map(product => (
-                    <ProductCard key={product._id || product.id} product={product} />
-                  ))}
-                </div>
+                <>
+                  <div className="products-grid">
+                    {paginatedProducts.map(product => (
+                      <ProductCard key={product._id || product.id} product={product} />
+                    ))}
+                  </div>
+                  <Pagination
+                    currentPage={currentPage}
+                    totalItems={filteredProducts.length}
+                    pageSize={PAGE_SIZE}
+                    onPageChange={setCurrentPage}
+                  />
+                </>
               )}
             </main>
           </div>
