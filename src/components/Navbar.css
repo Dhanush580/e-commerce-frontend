@@ -987,6 +987,67 @@
   }
 }
 
+/* Extra-small phones (e.g., 360x740): tighten spacing and icon sizes */
+@media screen and (max-width: 380px) {
+  .navbar-container {
+    height: 56px;
+    padding: 0 12px;
+    gap: 12px;
+  }
+
+  .navbar-logo {
+    font-size: 16px;
+    padding: 4px 8px;
+  }
+
+  .logo-icon {
+    font-size: 18px;
+  }
+
+  .mobile-actions {
+    gap: 8px;
+  }
+
+  .search-btn,
+  .cart-btn,
+  .wishlist-btn,
+  .profile-btn {
+    width: 32px !important;
+    height: 32px !important;
+    min-width: 32px !important;
+    min-height: 32px !important;
+    max-width: 32px !important;
+    max-height: 32px !important;
+    font-size: 13px !important;
+    border-radius: 8px !important;
+  }
+
+  .cart-count,
+  .wishlist-count {
+    width: 16px;
+    height: 16px;
+    font-size: 9px;
+    top: -5px;
+    right: -5px;
+  }
+
+  .hamburger {
+    padding: 4px;
+  }
+  .hamburger-icon {
+    font-size: 16px;
+  }
+
+  /* Align slide-in menu/backdrop with reduced navbar height */
+  .navbar-menu {
+    top: 56px;
+    height: calc(100vh - 56px);
+  }
+  .menu-backdrop {
+    top: 56px;
+  }
+}
+
 /* Smooth scrolling */
 html {
   scroll-behavior: smooth;
