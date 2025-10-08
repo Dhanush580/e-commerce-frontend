@@ -93,15 +93,23 @@ const TempleJewellery = () => {
 
               {/* Results Header */}
               <div className="results-header">
-                <div className="results-info">
-                  <h2>
-                    Showing {getFilterStats().filtered} of {getFilterStats().total} temple jewellery
-                  </h2>
-                  {getFilterStats().activeFilters > 0 && (
-                    <span className="active-filters">
-                      {getFilterStats().activeFilters} filter{getFilterStats().activeFilters !== 1 ? 's' : ''} applied
-                    </span>
-                  )}
+                <div className="results-info" style={{display:'flex',alignItems:'center',justifyContent:'space-between',gap:'12px',flexWrap:'wrap'}}>
+                  <div>
+                    <h2 style={{margin:0}}>Showing {getFilterStats().filtered} of {getFilterStats().total} temple jewellery</h2>
+                    {getFilterStats().activeFilters > 0 && (
+                      <span className="active-filters">
+                        {getFilterStats().activeFilters} filter{getFilterStats().activeFilters !== 1 ? 's' : ''} applied
+                      </span>
+                    )}
+                  </div>
+                  <button
+                    className="filter-toggle-btn"
+                    onClick={() => setIsFilterOpen(!isFilterOpen)}
+                    aria-label="Open filters"
+                  >
+                    <span className="filter-icon" aria-hidden>⚙️</span>
+                    <span>Filters</span>
+                  </button>
                 </div>
               </div>
 

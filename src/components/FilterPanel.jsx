@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { createPortal } from 'react-dom';
 import './FilterPanel.css';
 
 const FilterPanel = ({ 
@@ -107,38 +108,54 @@ const FilterPanel = ({
     }).format(price);
   };
 
-  return (
-    <>
-      {/* Mobile Filter Toggle */}
-      <div className="filter-mobile-header">
-        <button 
-          className="filter-toggle-btn"
-          onClick={onToggle}
-        >
-          <span className="filter-icon">⚙️</span>
-          Filters
-          {filters.inStock && (
-            <span className="filter-count">1</span>
-          )}
-        </button>
+  // Lock body scroll when the drawer is open on mobile
+  useEffect(() => {
+    if (typeof document === 'undefined') return;
+    if (isOpen) {
+      const prev = document.body.style.overflow;
+      document.body.style.overflow = 'hidden';
+      return () => { document.body.style.overflow = prev; };
+    }
+  }, [isOpen]);
+
+  // Close on Escape key when open
+  useEffect(() => {
+    if (!isOpen) return;
+    const onKey = (e) => {
+      if (e.key === 'Escape') {
+        onToggle?.();
+      }
+    };
+    window.addEventListener('keydown', onKey);
+    return () => window.removeEventListener('keydown', onKey);
+  }, [isOpen, onToggle]);
+  // Track whether viewport is mobile to decide portal rendering
+  const [isMobile, setIsMobile] = React.useState(false);
+  React.useEffect(() => {
+    if (typeof window === 'undefined' || !window.matchMedia) return;
+    const mq = window.matchMedia('(max-width: 768px)');
+    const update = () => setIsMobile(mq.matches);
+    update();
+    mq.addEventListener('change', update);
+    return () => mq.removeEventListener('change', update);
+  }, []);
+
+  const panelContent = (
+    <div className={`filter-panel ${isOpen ? 'open' : ''}`} role="dialog" aria-modal="true" aria-label="Filters">
+      <div className="filter-header">
+        <h3>Filters</h3>
+        {!isMobile && (
+          <button className="clear-filters-btn" onClick={clearFilters}>Clear All</button>
+        )}
+        <button className="filter-close-btn" onClick={onToggle} aria-label="Close filters">✕</button>
       </div>
 
-
-      {/* Filter Panel */}
-      <div className={`filter-panel ${isOpen ? 'open' : ''}`} style={{background: 'rgba(255,255,255,0.10)', boxShadow: 'none', backdropFilter: 'blur(2px)'}}>
-        <div className="filter-header">
-          <h3>Filters</h3>
-          <button className="clear-filters-btn" onClick={clearFilters}>
-            Clear All
-          </button>
-        </div>
-
-        {/* Category */}
+      <div className="filter-body">
         {categories.length > 0 && (
-          <div className="shop-category-filter" style={{marginBottom: 18}}>
+          <div className="shop-category-filter" style={{ marginBottom: 18 }}>
             <h4 className="shop-filter-title">Category</h4>
             <div className="shop-category-list">
-              {categories.map(cat => (
+              {categories.map((cat) => (
                 <button
                   key={cat}
                   className={`shop-category-btn${selectedCategory === cat ? ' active' : ''}`}
@@ -151,11 +168,10 @@ const FilterPanel = ({
           </div>
         )}
 
-        {/* Sort By */}
         <div className="filter-section">
           <h4>Sort By</h4>
-          <select 
-            value={filters.sortBy} 
+          <select
+            value={filters.sortBy}
             onChange={(e) => handleSortChange(e.target.value)}
             className="sort-select"
           >
@@ -167,7 +183,6 @@ const FilterPanel = ({
           </select>
         </div>
 
-        {/* Price Range */}
         <div className="filter-section">
           <h4>Price Range</h4>
           <div className="price-range-container">
@@ -195,7 +210,7 @@ const FilterPanel = ({
                 />
               </div>
             </div>
-            
+
             <div className="price-sliders">
               <input
                 type="range"
@@ -214,16 +229,13 @@ const FilterPanel = ({
                 className="price-slider max-slider"
               />
             </div>
-            
+
             <div className="price-display">
               {formatPrice(filters.priceRange[0])} - {formatPrice(filters.priceRange[1])}
             </div>
           </div>
         </div>
 
-
-
-        {/* Availability */}
         <div className="filter-section">
           <h4>Availability</h4>
           <div className="availability-options">
@@ -247,17 +259,31 @@ const FilterPanel = ({
             </label>
           </div>
         </div>
-
-        {/* Mobile Close Button */}
-        <div className="filter-mobile-footer">
-          <button className="apply-filters-btn" onClick={onToggle}>
-            Apply Filters
-          </button>
-        </div>
       </div>
 
-      {/* Mobile Overlay */}
-      {isOpen && <div className="filter-overlay" onClick={onToggle}></div>}
+      <div className="filter-mobile-footer">
+        <div className="footer-actions">
+          <button className="footer-clear-btn" onClick={clearFilters}>Clear All</button>
+          <button className="apply-filters-btn" onClick={onToggle}>Apply Filters</button>
+        </div>
+      </div>
+    </div>
+  );
+
+  
+
+  return (
+    <>
+      {/* Desktop: inline sticky sidebar; Mobile: portal drawer with overlay */}
+      {!isMobile && panelContent}
+
+      {isMobile && isOpen && typeof document !== 'undefined' && createPortal(
+        <>
+          <div className="filter-overlay" onClick={onToggle} aria-hidden></div>
+          {panelContent}
+        </>,
+        document.body
+      )}
     </>
   );
 };

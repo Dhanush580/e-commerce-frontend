@@ -294,6 +294,10 @@
     grid-template-columns: 1fr;
     gap: var(--wp-spacing-md);
   }
+  /* Hide the sidebar container on small mobile to avoid empty white block */
+  .filters-sidebar {
+    display: none !important;
+  }
   
   .products-grid {
     grid-template-columns: 1fr;
@@ -327,8 +331,9 @@
     gap: var(--wp-spacing-md);
   }
   
+  /* Hide the sidebar on mobile/tablet where the filter panel uses a drawer */
   .filters-sidebar {
-    position: static;
+    display: none !important;
   }
   
   .products-grid {

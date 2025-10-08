@@ -142,11 +142,21 @@ const Shop = () => {
             {/* Products Main */}
             <main className="products-main">
               <div className="results-header">
-                <div className="results-info">
-                  <h2>Showing {filteredProducts.length} of {products.length} products</h2>
-                  {activeFilters > 0 && (
-                    <span className="active-filters">{activeFilters} filter{activeFilters !== 1 ? 's' : ''} applied</span>
-                  )}
+                <div className="results-info" style={{display:'flex',alignItems:'center',justifyContent:'space-between',gap:'12px',flexWrap:'wrap'}}>
+                  <div>
+                    <h2 style={{margin:0}}>Showing {filteredProducts.length} of {products.length} products</h2>
+                    {activeFilters > 0 && (
+                      <span className="active-filters">{activeFilters} filter{activeFilters !== 1 ? 's' : ''} applied</span>
+                    )}
+                  </div>
+                  <button
+                    className="filter-toggle-btn"
+                    onClick={() => setIsFilterOpen(o => !o)}
+                    aria-label="Open filters"
+                  >
+                    <span className="filter-icon" aria-hidden>⚙️</span>
+                    <span>Filters</span>
+                  </button>
                 </div>
               </div>
 
