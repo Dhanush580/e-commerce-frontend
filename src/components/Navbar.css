@@ -690,6 +690,11 @@
   display: none;
 }
 
+/* Hide mobile-only profile shortcut on desktop */
+.mobile-profile-shortcut {
+  display: none;
+}
+
 /* Mobile Styles */
 @media screen and (max-width: 968px) {
   /* Backdrop for the remaining 30% of the screen */
@@ -1008,7 +1013,7 @@ html {
 
   .mobile-profile-shortcut {
     margin-top: auto; /* push to bottom of the panel */
-    display: flex;
+    display: flex; /* show only on mobile */
     align-items: center;
     gap: 10px;
     padding: 14px 18px;
