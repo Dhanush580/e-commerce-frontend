@@ -251,7 +251,8 @@
     gap: 6px;
     bottom: 12px;
     padding: 4px;
-    opacity: 1; /* Always visible on mobile */
+    opacity: 1 !important; /* Always visible on mobile */
+    display: flex !important;
   }
   
   .icon-btn {
@@ -278,15 +279,19 @@
   }
   
   .icon-container {
-    position: static;
-    transform: none;
-    opacity: 1; /* Already visible */
-    background: transparent;
-    box-shadow: none;
-    backdrop-filter: none;
-    border: none;
-    padding: 12px 0 0;
-    justify-content: center;
+    position: absolute !important;
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+    bottom: 10px !important;
+    opacity: 1 !important; /* Always visible */
+    display: flex !important;
+    background: transparent !important;
+    box-shadow: none !important;
+    backdrop-filter: none !important;
+    border: none !important;
+    padding: 0 !important;
+    justify-content: center !important;
+    z-index: 2;
   }
   
   .icon-btn {
@@ -329,5 +334,27 @@
   
   .icon-btn:hover {
     transform: none;
+  }
+}
+
+/* Extra-small devices like 360x740: enforce visible icons for every card */
+@media (max-width: 380px) {
+  .product-image { height: 190px; }
+  .icon-container {
+    position: absolute !important;
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+    bottom: 8px !important;
+    opacity: 1 !important;
+    display: flex !important;
+    z-index: 2;
+  }
+}
+
+/* Touch devices: force visible icons for all cards regardless of width */
+@media (hover: none) and (pointer: coarse) {
+  .product-card .icon-container {
+    opacity: 1 !important;
+    display: flex !important;
   }
 }
