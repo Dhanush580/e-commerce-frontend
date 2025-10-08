@@ -1,0 +1,33 @@
+/* Provide the user's color template variables globally */
+:root {
+  --color-background: 9, 46, 32;
+  --color-background-secondary: 245, 245, 245;
+  --gradient-background: #092e20;
+  --color-foreground: 255, 255, 255;
+  --color-foreground-secondary: 255, 255, 255;
+  --color-heading: 255, 255, 255;
+  --color-button: 255, 255, 255;
+  --color-button-text: 34, 34, 34;
+  --color-outline-button: 255, 255, 255;
+  --color-button-hover: 255, 255, 255;
+  --color-button-text-hover: 34, 34, 34;
+  --color-border: 222, 222, 222;
+  --color-price-sale: 255, 255, 255;
+  --color-price-regular: 255, 255, 255;
+  --color-form-field: 255, 255, 255;
+  --color-form-field-text: 0, 0, 0;
+}
+
+/* Base reset and typography */
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html, body, #root { min-height: 100%; }
+body {
+  font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+  background: rgb(var(--color-background-secondary));
+  color: rgb(var(--color-button-text));
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+a { color: inherit; text-decoration: none; }
+img { max-width: 100%; display: block; }

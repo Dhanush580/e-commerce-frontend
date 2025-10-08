@@ -1,0 +1,19 @@
+/* WishlistGrid.css - Grid for wishlist ProductCards */
+
+.wishlist-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--wp-spacing-md, 16px);
+}
+
+@media (min-width: 769px) {
+  .wishlist-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (min-width: 1025px) {
+  .wishlist-grid {
+    grid-template-columns: repeat(5, 1fr); /* 5 per row on desktop */
+  }
+}

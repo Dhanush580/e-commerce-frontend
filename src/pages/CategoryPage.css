@@ -1,0 +1,449 @@
+/* Category Page Styles - Modern Jewelry E-commerce Theme */
+:root {
+  /* Updated Color Palette */
+  --wp-primary-light: #BEEDDB;
+  --wp-primary-dark: #04120D;
+  --wp-accent-gold: #C8A97E;
+  --wp-accent-silver: #8A9A9B;
+  --wp-bg-light: #F8FBF9;
+  --wp-bg-card: #FFFFFF;
+  --wp-text-dark: #04120D;
+  --wp-text-light: #5A7167;
+  --wp-border-light: #E1ECE7;
+  
+  /* Spacing System */
+  --wp-spacing-xs: 0.5rem;
+  --wp-spacing-sm: 1rem;
+  --wp-spacing-md: 1.5rem;
+  --wp-spacing-lg: 2.5rem;
+  --wp-spacing-xl: 4rem;
+  
+  /* Border Radius */
+  --wp-radius-sm: 8px;
+  --wp-radius-md: 12px;
+  --wp-radius-lg: 16px;
+  
+  /* Shadows */
+  --wp-shadow-soft: 0 4px 20px rgba(4, 18, 13, 0.08);
+  --wp-shadow-hover: 0 8px 30px rgba(4, 18, 13, 0.12);
+  
+  /* Transitions */
+  --wp-transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Reset and Base Styles */
+.category-page {
+  min-height: 100vh;
+  background-color: var(--wp-bg-light);
+  color: var(--wp-text-dark);
+  font-family: 'Inter', 'Segoe UI', system-ui, sans-serif;
+  line-height: 1.6;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 var(--wp-spacing-sm);
+}
+
+/* Category Header */
+.category-header {
+  padding: var(--wp-spacing-xl) 0 var(--wp-spacing-lg);
+  background: linear-gradient(135deg, var(--wp-primary-dark) 0%, #41695E 100%);
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.category-header::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: 
+    radial-gradient(circle at 20% 80%, rgba(190, 237, 219, 0.1) 0%, transparent 50%),
+    radial-gradient(circle at 80% 20%, rgba(200, 169, 126, 0.05) 0%, transparent 50%);
+}
+
+.category-title {
+  font-size: 3.5rem;
+  font-weight: 300;
+  color: var(--wp-primary-light);
+  margin-bottom: var(--wp-spacing-sm);
+  letter-spacing: -0.02em;
+  position: relative;
+  z-index: 1;
+  line-height: 1.1;
+}
+
+.category-description {
+  font-size: 1.125rem;
+  color: rgba(190, 237, 219, 0.9);
+  font-weight: 400;
+  max-width: 600px;
+  margin: 0 auto;
+  line-height: 1.6;
+  position: relative;
+  z-index: 1;
+}
+
+/* Products Section - FIXED FULL WIDTH */
+.category-products {
+  padding: var(--wp-spacing-xl) 0;
+  background: var(--wp-bg-light);
+  width: 100%;
+}
+
+.products-layout {
+  display: grid;
+  grid-template-columns: 280px 1fr;
+  gap: var(--wp-spacing-lg);
+  align-items: start;
+  width: 100%;
+}
+
+/* Filters Sidebar */
+.filters-sidebar {
+  position: sticky;
+  top: var(--wp-spacing-md);
+  background: var(--wp-bg-card);
+  border-radius: var(--wp-radius-lg);
+  padding: var(--wp-spacing-md);
+  box-shadow: var(--wp-shadow-soft);
+  border: 1px solid var(--wp-border-light);
+  height: fit-content;
+}
+
+/* Products Main Area - FIXED FULL WIDTH */
+.products-main {
+  min-height: 400px;
+  width: 100%;
+}
+
+/* Subcategory Bar */
+.subcategory-bar {
+  display: flex;
+  gap: var(--wp-spacing-xs);
+  margin-bottom: var(--wp-spacing-md);
+  flex-wrap: wrap;
+  width: 100%;
+}
+
+.subcategory-chip {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--wp-spacing-xs) var(--wp-spacing-sm);
+  border-radius: var(--wp-radius-md);
+  border: 1px solid var(--wp-border-light);
+  background: var(--wp-bg-card);
+  color: var(--wp-text-light);
+  font-weight: 500;
+  font-size: 0.875rem;
+  cursor: pointer;
+  transition: var(--wp-transition);
+  user-select: none;
+  white-space: nowrap;
+  flex: 1;
+  min-width: 120px;
+}
+
+.subcategory-chip:hover {
+  background: var(--wp-primary-light);
+  color: var(--wp-primary-dark);
+  border-color: var(--wp-primary-light);
+  transform: translateY(-2px);
+  box-shadow: var(--wp-shadow-soft);
+}
+
+.subcategory-chip.active {
+  background: var(--wp-primary-dark);
+  color: var(--wp-primary-light);
+  border-color: var(--wp-primary-dark);
+}
+
+/* Results Header */
+.results-header {
+  margin-bottom: var(--wp-spacing-md);
+  padding-bottom: var(--wp-spacing-sm);
+  border-bottom: 1px solid var(--wp-border-light);
+  width: 100%;
+}
+
+.results-info h2 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--wp-text-dark);
+  margin: 0 0 var(--wp-spacing-xs) 0;
+}
+
+.active-filters {
+  font-size: 0.875rem;
+  color: var(--wp-text-light);
+  background: var(--wp-primary-light);
+  padding: 4px var(--wp-spacing-xs);
+  border-radius: var(--wp-radius-sm);
+  font-weight: 500;
+}
+
+/* Products Grid - FIXED FULL WIDTH & LARGER CARDS */
+.products-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--wp-spacing-md);
+  animation: fadeInUp 0.6s ease-out;
+  width: 100%;
+}
+
+/* Ensure product cards take full available width */
+.products-grid > * {
+  width: 100%;
+  min-width: 0; /* Prevent flexbox overflow */
+}
+
+/* Loading and Error States */
+.loading-message, .error-message, .no-products {
+  text-align: center;
+  padding: var(--wp-spacing-xl) var(--wp-spacing-md);
+  font-size: 1.125rem;
+  color: var(--wp-text-light);
+  grid-column: 1 / -1;
+  width: 100%;
+}
+
+.loading-message {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--wp-spacing-sm);
+  font-weight: 500;
+}
+
+.loading-message::before {
+  content: '';
+  width: 20px;
+  height: 20px;
+  border: 2px solid var(--wp-border-light);
+  border-top: 2px solid var(--wp-primary-dark);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+.error-message {
+  color: #DC2626;
+  background: #FEF2F2;
+  border-radius: var(--wp-radius-md);
+  border: 1px solid #FECACA;
+  padding: var(--wp-spacing-md);
+}
+
+.no-products {
+  color: var(--wp-text-light);
+  background: var(--wp-bg-card);
+  border-radius: var(--wp-radius-md);
+  border: 1px solid var(--wp-border-light);
+  padding: var(--wp-spacing-lg);
+}
+
+/* Animations */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Responsive Design - Mobile First Approach */
+
+/* Small Mobile: 480px and below */
+@media screen and (max-width: 480px) {
+  .container {
+    padding: 0 var(--wp-spacing-xs);
+  }
+  
+  .category-header {
+    padding: var(--wp-spacing-lg) 0;
+  }
+  
+  .category-title {
+    font-size: 2rem;
+    margin-bottom: var(--wp-spacing-xs);
+  }
+  
+  .category-description {
+    font-size: 1rem;
+    padding: 0 var(--wp-spacing-xs);
+  }
+  
+  .category-products {
+    padding: var(--wp-spacing-lg) 0;
+  }
+  
+  .products-layout {
+    grid-template-columns: 1fr;
+    gap: var(--wp-spacing-md);
+  }
+  
+  .products-grid {
+    grid-template-columns: 1fr;
+    gap: var(--wp-spacing-sm);
+  }
+  
+  .subcategory-bar {
+    gap: var(--wp-spacing-xs);
+  }
+  
+  .subcategory-chip {
+    flex: 1;
+    min-width: calc(50% - var(--wp-spacing-xs));
+    font-size: 0.8rem;
+    padding: 8px var(--wp-spacing-xs);
+  }
+}
+
+/* Mobile: 481px - 768px */
+@media screen and (min-width: 481px) and (max-width: 768px) {
+  .category-header {
+    padding: var(--wp-spacing-lg) 0;
+  }
+  
+  .category-title {
+    font-size: 2.5rem;
+  }
+  
+  .products-layout {
+    grid-template-columns: 1fr;
+    gap: var(--wp-spacing-md);
+  }
+  
+  .filters-sidebar {
+    position: static;
+  }
+  
+  .products-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--wp-spacing-md);
+  }
+  
+  .subcategory-chip {
+    flex: 1;
+    min-width: calc(33.333% - var(--wp-spacing-xs));
+  }
+}
+
+/* Tablet: 769px - 1024px */
+@media screen and (min-width: 769px) and (max-width: 1024px) {
+  .products-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--wp-spacing-md);
+  }
+  
+  .products-layout {
+    grid-template-columns: 250px 1fr;
+    gap: var(--wp-spacing-md);
+  }
+  
+  .category-title {
+    font-size: 3rem;
+  }
+}
+
+/* Desktop: 1025px and above - FIXED CARD SIZES */
+@media screen and (min-width: 1025px) {
+  .products-grid {
+    grid-template-columns: repeat(4, 1fr);
+    gap: var(--wp-spacing-md);
+  }
+  
+  /* Ensure cards take full grid cell width */
+  .products-grid > * {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+/* Large Desktop: 1200px and above - EVEN LARGER CARDS */
+@media screen and (min-width: 1200px) {
+  .products-grid {
+    grid-template-columns: repeat(4, 1fr);
+    gap: var(--wp-spacing-lg);
+  }
+  
+  .container {
+    max-width: 1400px;
+    padding: 0 var(--wp-spacing-md);
+  }
+}
+
+/* Hover Effects for Interactive Elements */
+.products-grid {
+  perspective: 1000px;
+}
+
+/* Smooth scrolling for better UX */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Focus styles for accessibility */
+.subcategory-chip:focus-visible {
+  outline: 2px solid var(--wp-primary-dark);
+  outline-offset: 2px;
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+/* Print Styles */
+@media print {
+  .category-header {
+    background: white !important;
+    color: black !important;
+  }
+  
+  .category-title {
+    color: black !important;
+  }
+  
+  .subcategory-bar,
+  .filters-sidebar {
+    display: none;
+  }
+  
+  .products-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  :root {
+    --wp-border-light: #000000;
+    --wp-shadow-soft: 0 2px 8px rgba(0, 0, 0, 0.3);
+  }
+  
+  .subcategory-chip {
+    border-width: 2px;
+  }
+}

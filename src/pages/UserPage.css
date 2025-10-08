@@ -1,0 +1,510 @@
+/* UserPage.css - Clean & Organized */
+.upp-container {
+  min-height: 100vh;
+  background: #f8f9fa;
+  padding: 0;
+  margin: 0;
+}
+
+/* Header Styles */
+.upp-header {
+  background: #04120D;
+  color: white;
+  padding: 2rem 0;
+  margin-bottom: 2rem;
+}
+
+.upp-header-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem;
+  text-align: center;
+}
+
+.upp-header-title {
+  font-size: 2rem;
+  font-weight: 600;
+  margin: 0 0 0.5rem 0;
+  color: #BEEDDB;
+}
+
+.upp-header-subtitle {
+  font-size: 1rem;
+  opacity: 0.8;
+  margin: 0;
+  color: #fff;
+}
+
+/* Main Layout */
+.upp-main-wrapper {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem 2rem;
+  display: grid;
+  grid-template-columns: 280px 1fr;
+  gap: 2rem;
+  align-items: start;
+}
+
+/* Sidebar Styles */
+.upp-sidebar-section {
+  position: sticky;
+  top: 2rem;
+}
+
+.upp-sidebar {
+  background: white;
+  border-radius: 12px;
+  padding: 1.5rem;
+  box-shadow: 0 2px 8px rgba(4, 18, 13, 0.1);
+  border: 1px solid #e8e8e8;
+}
+
+.upp-user-info {
+  text-align: center;
+  margin-bottom: 1.5rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.upp-user-avatar {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background: #41695E;
+  color: #BEEDDB;
+  font-size: 1.5rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 1rem;
+}
+
+.upp-user-name {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #04120D;
+  margin: 0 0 0.25rem 0;
+}
+
+.upp-user-email {
+  font-size: 0.9rem;
+  color: #666;
+  margin: 0;
+  word-break: break-word;
+}
+
+.upp-nav-menu {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.upp-nav-item {
+  display: block;
+  padding: 0.75rem 1rem;
+  text-decoration: none;
+  color: #41695E;
+  font-weight: 500;
+  border-radius: 8px;
+  transition: all 0.2s ease;
+  border: none;
+  background: none;
+  text-align: left;
+  cursor: pointer;
+  font-size: 0.95rem;
+}
+
+.upp-nav-item:hover {
+  background: #f8f9fa;
+  color: #04120D;
+}
+
+.upp-nav-active {
+  background: #41695E;
+  color: white;
+}
+
+.upp-nav-logout {
+  color: #e74c3c;
+  margin-top: 0.5rem;
+}
+
+.upp-nav-logout:hover {
+  background: #e74c3c;
+  color: white;
+}
+
+/* Content Section */
+.upp-content-section {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+/* Welcome Card */
+.upp-welcome-card {
+  background: white;
+  border-radius: 12px;
+  padding: 1.5rem;
+  box-shadow: 0 2px 8px rgba(4, 18, 13, 0.1);
+  border: 1px solid #e8e8e8;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.upp-welcome-content h2 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #04120D;
+  margin: 0 0 0.25rem 0;
+}
+
+.upp-welcome-content p {
+  color: #666;
+  margin: 0;
+  font-size: 0.95rem;
+}
+
+.upp-logout-text {
+  color: #41695E;
+  cursor: pointer;
+  font-size: 0.9rem;
+  text-decoration: underline;
+}
+
+.upp-logout-text:hover {
+  color: #04120D;
+}
+
+/* Card Styles */
+.upp-card {
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(4, 18, 13, 0.1);
+  border: 1px solid #e8e8e8;
+  overflow: hidden;
+}
+
+.upp-card-header {
+  padding: 1.25rem 1.5rem;
+  border-bottom: 1px solid #f0f0f0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.upp-card-title {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #04120D;
+  margin: 0;
+}
+
+.upp-card-content {
+  padding: 1.5rem;
+}
+
+/* Orders Section */
+.upp-loading {
+  text-align: center;
+  color: #666;
+  padding: 1rem;
+}
+
+.upp-empty-state {
+  text-align: center;
+  padding: 2rem 1rem;
+  color: #666;
+}
+
+.upp-empty-state p {
+  margin: 0 0 1rem 0;
+}
+
+.upp-orders-content {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.upp-order-card {
+  background: #f8f9fa;
+  border-radius: 8px;
+  padding: 1.25rem;
+  border-left: 4px solid #41695E;
+}
+
+.upp-order-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.75rem;
+}
+
+.upp-order-info {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+
+.upp-order-date {
+  color: #666;
+  font-size: 0.9rem;
+}
+
+.upp-order-total {
+  font-weight: 600;
+  color: #04120D;
+  font-size: 1rem;
+}
+
+.upp-order-status {
+  font-size: 0.9rem;
+  color: #666;
+}
+
+.upp-order-status span {
+  font-weight: 600;
+  color: #04120D;
+}
+
+.upp-payment-info {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 0.5rem;
+  font-size: 0.9rem;
+  color: #666;
+}
+
+.upp-order-items ul {
+  margin: 0;
+  padding-left: 1rem;
+  color: #555;
+}
+
+.upp-order-items li {
+  margin-bottom: 0.25rem;
+  font-size: 0.9rem;
+}
+
+/* Details Grid */
+.upp-details-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.upp-detail-row {
+  display: grid;
+  grid-template-columns: 120px 1fr;
+  gap: 1rem;
+  align-items: start;
+  padding: 0.5rem 0;
+}
+
+.upp-detail-full {
+  grid-template-columns: 120px 1fr;
+}
+
+.upp-detail-label {
+  font-weight: 600;
+  color: #04120D;
+  font-size: 0.95rem;
+  padding-top: 0.25rem;
+}
+
+.upp-detail-value {
+  color: #555;
+  font-size: 0.95rem;
+  word-break: break-word;
+}
+
+.upp-address-display {
+  line-height: 1.5;
+  color: #555;
+}
+
+.upp-no-address {
+  color: #999;
+  font-style: italic;
+}
+
+/* Form Styles */
+.upp-input {
+  width: 100%;
+  padding: 0.5rem 0.75rem;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  font-size: 0.95rem;
+  transition: border-color 0.2s ease;
+}
+
+.upp-input:focus {
+  outline: none;
+  border-color: #41695E;
+}
+
+.upp-address-form {
+  width: 100%;
+}
+
+.upp-form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.75rem;
+}
+
+/* Button Styles */
+.upp-btn {
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 6px;
+  font-weight: 500;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-decoration: none;
+  display: inline-block;
+  text-align: center;
+}
+
+.upp-btn-primary {
+  background: #41695E;
+  color: white;
+}
+
+.upp-btn-primary:hover {
+  background: #04120D;
+}
+
+.upp-btn-secondary {
+  background: transparent;
+  color: #41695E;
+  border: 1px solid #41695E;
+}
+
+.upp-btn-secondary:hover {
+  background: #41695E;
+  color: white;
+}
+
+.upp-btn-edit {
+  background: transparent;
+  color: #41695E;
+  border: 1px solid #41695E;
+  padding: 0.375rem 0.75rem;
+  font-size: 0.85rem;
+}
+
+.upp-btn-edit:hover {
+  background: #41695E;
+  color: white;
+}
+
+.upp-btn-save {
+  min-width: 120px;
+}
+
+.upp-actions {
+  margin-top: 1.5rem;
+  padding-top: 1rem;
+  border-top: 1px solid #f0f0f0;
+}
+
+/* Error Message */
+.upp-error-message {
+  background: #f8d7da;
+  color: #721c24;
+  padding: 0.75rem;
+  border-radius: 6px;
+  border: 1px solid #f5c6cb;
+  margin-top: 1rem;
+  font-size: 0.9rem;
+}
+
+.upp-email-link {
+  color: #41695E;
+  text-decoration: none;
+}
+
+.upp-email-link:hover {
+  color: #04120D;
+  text-decoration: underline;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .upp-main-wrapper {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    padding: 0 0.75rem 1rem;
+  }
+
+  .upp-sidebar-section {
+    position: static;
+  }
+
+  .upp-welcome-card {
+    flex-direction: column;
+    gap: 1rem;
+    text-align: center;
+  }
+
+  .upp-detail-row {
+    grid-template-columns: 1fr;
+    gap: 0.5rem;
+  }
+
+  .upp-form-grid {
+    grid-template-columns: 1fr;
+    gap: 0.5rem;
+  }
+
+  .upp-order-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+
+  .upp-payment-info {
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+
+  .upp-card-header {
+    flex-direction: column;
+    gap: 1rem;
+    align-items: flex-start;
+  }
+}
+
+@media (max-width: 480px) {
+  .upp-header {
+    padding: 1.5rem 0;
+    margin-bottom: 1rem;
+  }
+
+  .upp-header-title {
+    font-size: 1.5rem;
+  }
+
+  .upp-sidebar,
+  .upp-card,
+  .upp-welcome-card {
+    border-radius: 8px;
+    padding: 1rem;
+  }
+
+  .upp-card-content {
+    padding: 1rem;
+  }
+
+  .upp-user-avatar {
+    width: 48px;
+    height: 48px;
+    font-size: 1.25rem;
+  }
+}

@@ -1,0 +1,107 @@
+/* WarningDialog.css */
+.wdb-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(45, 74, 62, 0.08);
+  /* Above LoginModal (2000/2100/2200) and Quick View (10001) */
+  z-index: 11000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--wp-spacing-sm);
+}
+
+.wdb-dialog {
+  background: var(--wp-bg-card);
+  border-radius: var(--wp-radius-md);
+  box-shadow: var(--wp-shadow-soft);
+  padding: var(--wp-spacing-lg) var(--wp-spacing-xl);
+  min-width: 320px;
+  max-width: 90vw;
+  text-align: center;
+  border: 1px solid var(--wp-border-light);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.wdb-dialog:hover {
+  box-shadow: var(--wp-shadow-hover);
+  transform: translateY(-2px);
+}
+
+.wdb-header {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--wp-primary-dark);
+  margin-bottom: var(--wp-spacing-sm);
+  font-family: 'Inter', 'Segoe UI', system-ui, sans-serif;
+  line-height: 1.1;
+}
+
+.wdb-message {
+  font-size: 1rem;
+  color: var(--wp-text-light);
+  margin-bottom: var(--wp-spacing-lg);
+  font-family: 'Inter', 'Segoe UI', system-ui, sans-serif;
+  font-weight: 400;
+  line-height: 1.6;
+}
+
+.wdb-close {
+  background: var(--wp-primary-dark);
+  color: var(--wp-bg-light);
+  border: none;
+  border-radius: var(--wp-radius-sm);
+  padding: var(--wp-spacing-xs) var(--wp-spacing-md);
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  font-family: 'Inter', 'Segoe UI', system-ui, sans-serif;
+  min-width: 80px;
+}
+
+.wdb-close:hover {
+  background: var(--wp-accent-gold);
+  color: var(--wp-text-dark);
+  transform: translateY(-2px);
+}
+
+.wdb-close:focus {
+  outline: 2px solid var(--wp-primary-light);
+  outline-offset: 2px;
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  .wdb-dialog,
+  .wdb-close {
+    transition: none;
+  }
+  
+  .wdb-dialog:hover {
+    transform: none;
+  }
+  
+  .wdb-close:hover {
+    transform: none;
+  }
+}
+
+/* Mobile responsiveness */
+@media (max-width: 480px) {
+  .wdb-dialog {
+    padding: var(--wp-spacing-md) var(--wp-spacing-lg);
+    min-width: 280px;
+  }
+  
+  .wdb-header {
+    font-size: 1.125rem;
+  }
+  
+  .wdb-message {
+    font-size: 0.9375rem;
+  }
+}

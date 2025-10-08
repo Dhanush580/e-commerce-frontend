@@ -1,0 +1,53 @@
+/* Main App Styles - Matching Welcome Theme */
+:root {
+  --color-background: 9, 46, 32; /* #092E20 */
+  --color-background-secondary: 15, 60, 42;
+  --color-foreground: 255, 255, 255;
+  --color-button: 194, 241, 223;
+  --color-button-text: 9, 46, 32;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Roboto Condensed', sans-serif;
+  line-height: 1.6;
+  color: rgb(var(--color-foreground));
+  background: rgb(var(--color-background));
+}
+
+.app-offset { /* optional utility if needed later */
+  padding-top: 70px;
+}
+
+.app {
+  width: 100%;
+  min-height: 100vh;
+  padding-top: 70px; /* Account for fixed navbar */
+}
+
+/* Global styles for smooth transitions */
+* {
+  transition: color 0.25s ease, background-color 0.25s ease;
+}
+
+/* Scroll behavior */
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 70px; /* prevent anchor targets under navbar */
+}
+
+/* Match navbar responsive heights */
+@media (max-width: 968px) {
+  .app { padding-top: 64px; }
+  html { scroll-padding-top: 64px; }
+}
+
+@media (max-width: 480px) {
+  .app { padding-top: 60px; }
+  html { scroll-padding-top: 60px; }
+}

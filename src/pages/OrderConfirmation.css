@@ -1,0 +1,375 @@
+/* OrderConfirmation.css - Mobile First Approach */
+
+.ocp-container {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #04120D 0%, #0a2a1f 100%);
+  padding: 20px 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Inter', 'Segoe UI', system-ui, sans-serif;
+}
+
+.ocp-card {
+  background: #ffffff;
+  border-radius: 20px;
+  box-shadow: 0 10px 40px rgba(4, 18, 13, 0.15);
+  padding: 24px;
+  max-width: 480px;
+  width: 100%;
+  animation: ocp-slideUp 0.6s ease-out;
+}
+
+@keyframes ocp-slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Success Header */
+.ocp-success-header {
+  text-align: center;
+  margin-bottom: 32px;
+  padding-bottom: 24px;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.ocp-success-icon {
+  width: 64px;
+  height: 64px;
+  background: #BEEDDB;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 16px;
+  color: #04120D;
+  animation: ocp-scaleIn 0.5s ease-out 0.2s both;
+}
+
+@keyframes ocp-scaleIn {
+  from {
+    transform: scale(0);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.ocp-success-icon svg {
+  width: 32px;
+  height: 32px;
+}
+
+.ocp-title {
+  color: #04120D;
+  font-size: 28px;
+  font-weight: 700;
+  margin: 0 0 8px 0;
+  line-height: 1.2;
+}
+
+.ocp-subtitle {
+  color: #41695E;
+  font-size: 16px;
+  margin: 0;
+  font-weight: 500;
+}
+
+/* Detail Sections */
+.ocp-order-details {
+  margin-bottom: 32px;
+}
+
+.ocp-detail-section {
+  margin-bottom: 24px;
+}
+
+.ocp-section-title {
+  color: #04120D;
+  font-size: 18px;
+  font-weight: 600;
+  margin: 0 0 16px 0;
+  padding-bottom: 8px;
+  border-bottom: 2px solid #BEEDDB;
+}
+
+/* Detail Grid */
+.ocp-detail-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.ocp-detail-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 0;
+  border-bottom: 1px solid #f5f5f5;
+}
+
+.ocp-detail-label {
+  color: #666;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.ocp-detail-value {
+  color: #04120D;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+/* Status Badges */
+.ocp-status {
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: capitalize;
+}
+
+.ocp-status-paid,
+.ocp-status-completed,
+.ocp-status-success {
+  background: #BEEDDB;
+  color: #04120D;
+}
+
+.ocp-status-pending {
+  background: #fff3cd;
+  color: #856404;
+}
+
+.ocp-status-failed {
+  background: #f8d7da;
+  color: #721c24;
+}
+
+/* Address Card */
+.ocp-address-card {
+  background: #f8fdfb;
+  border: 1px solid #BEEDDB;
+  border-radius: 12px;
+  padding: 16px;
+  margin-top: 8px;
+}
+
+.ocp-address-name {
+  color: #04120D;
+  font-size: 16px;
+  font-weight: 600;
+  margin: 0 0 4px 0;
+}
+
+.ocp-address-email,
+.ocp-address-phone {
+  color: #41695E;
+  font-size: 14px;
+  margin: 0 0 4px 0;
+}
+
+.ocp-address-full {
+  color: #666;
+  font-size: 14px;
+  margin: 12px 0 0 0;
+  line-height: 1.5;
+}
+
+/* Items List */
+.ocp-items-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.ocp-item-card {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px;
+  background: #f8fdfb;
+  border: 1px solid #e8f5f0;
+  border-radius: 8px;
+  transition: all 0.2s ease;
+}
+
+.ocp-item-card:hover {
+  border-color: #BEEDDB;
+  transform: translateY(-1px);
+  box-shadow: 0 2px 8px rgba(190, 237, 219, 0.3);
+}
+
+.ocp-item-info {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.ocp-item-name {
+  color: #04120D;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.ocp-item-quantity {
+  color: #41695E;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.ocp-item-price {
+  color: #04120D;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+/* Total Section */
+.ocp-total-section {
+  background: linear-gradient(135deg, #04120D 0%, #0a2a1f 100%);
+  border-radius: 12px;
+  padding: 20px;
+  margin-top: 24px;
+}
+
+.ocp-total-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.ocp-total-label {
+  color: #BEEDDB;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.ocp-total-amount {
+  color: #ffffff;
+  font-size: 24px;
+  font-weight: 700;
+}
+
+/* Home Button */
+.ocp-home-button {
+  width: 100%;
+  background: linear-gradient(135deg, #04120D 0%, #41695E 100%);
+  color: white;
+  border: none;
+  padding: 16px 24px;
+  border-radius: 12px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.ocp-home-button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+  transition: left 0.5s;
+}
+
+.ocp-home-button:hover::before {
+  left: 100%;
+}
+
+.ocp-home-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(4, 18, 13, 0.3);
+}
+
+.ocp-home-button:active {
+  transform: translateY(0);
+}
+
+.ocp-button-icon {
+  width: 20px;
+  height: 20px;
+  transition: transform 0.2s ease;
+}
+
+.ocp-home-button:hover .ocp-button-icon {
+  transform: translateX(3px);
+}
+
+/* Tablet and Desktop Styles */
+@media (min-width: 768px) {
+  .ocp-container {
+    padding: 40px 24px;
+  }
+  
+  .ocp-card {
+    padding: 40px;
+    max-width: 520px;
+    border-radius: 24px;
+  }
+  
+  .ocp-title {
+    font-size: 32px;
+  }
+  
+  .ocp-section-title {
+    font-size: 20px;
+  }
+  
+  .ocp-detail-item {
+    padding: 16px 0;
+  }
+  
+  .ocp-detail-label,
+  .ocp-detail-value {
+    font-size: 15px;
+  }
+  
+  .ocp-address-card {
+    padding: 20px;
+  }
+  
+  .ocp-item-card {
+    padding: 16px;
+  }
+  
+  .ocp-home-button {
+    padding: 18px 24px;
+    font-size: 17px;
+  }
+}
+
+/* Large Desktop */
+@media (min-width: 1024px) {
+  .ocp-card {
+    max-width: 560px;
+  }
+}
+
+/* Reduced motion for accessibility */
+@media (prefers-reduced-motion: reduce) {
+  .ocp-card,
+  .ocp-success-icon,
+  .ocp-item-card,
+  .ocp-home-button,
+  .ocp-button-icon {
+    animation: none;
+    transition: none;
+  }
+}

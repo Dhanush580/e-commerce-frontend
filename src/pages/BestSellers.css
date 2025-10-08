@@ -1,0 +1,9 @@
+/* BestSellers page-specific overrides */
+
+/* Only adjust desktop and above. Mobile/Tablet keep defaults from CategoryPage.css */
+@media screen and (min-width: 1025px) {
+  .bestsellers-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+  }
+}
