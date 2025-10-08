@@ -7,6 +7,26 @@
 // Accepts a string or a product object.
 const API_BASE = (import.meta?.env?.VITE_API_URL || '').replace(/\/$/, '');
 
+function normalizeAbsolute(u) {
+	try {
+		const abs = new URL(u);
+		if (!API_BASE) return u;
+		const api = new URL(API_BASE);
+		// If the absolute URL points to our backend paths but with a different host or insecure protocol,
+		// rewrite to use the configured API base to avoid mixed content and CORS issues.
+		if (abs.pathname.startsWith('/images') || abs.pathname.startsWith('/uploads')) {
+			return `${API_BASE}${abs.pathname}${abs.search || ''}`;
+		}
+		// Generic upgrade: if absolute is http and API base is https, try upgrading protocol
+		if (abs.protocol === 'http:' && api.protocol === 'https:') {
+			return u.replace(/^http:\/\//i, 'https://');
+		}
+		return u;
+	} catch (_) {
+		return u;
+	}
+}
+
 function prefix(path) {
   if (!path) return path;
   // In dev, API_BASE may be empty and Vite proxy will handle relative paths.
@@ -20,7 +40,7 @@ export function resolveImageUrl(input) {
 		u = img || '';
 	}
 	if (!u) return 'https://via.placeholder.com/500x500?text=No+Image';
-	if (/^https?:\/\//i.test(u)) return u;
+		if (/^https?:\/\//i.test(u)) return normalizeAbsolute(u);
 	if (/^\/images\//.test(u)) return prefix(u);
 	if (/^\/uploads\//.test(u)) return prefix(u);
 	if (/^[a-f\d]{24}$/i.test(u)) return prefix(`/images/${u}`);
