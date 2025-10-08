@@ -120,7 +120,6 @@ const ProductCard = ({ product }) => {
             <img
               src={images[currentImage]}
               alt={product.name || 'Product'}
-              style={{ width: '100%', height: 'auto', objectFit: 'cover' }}
             />
           )}
           {/* Carousel controls */}

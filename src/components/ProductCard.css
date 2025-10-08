@@ -19,15 +19,16 @@
 /* -------- Image -------- */
 .product-image {
   position: relative;
-  height: 280px;
   overflow: hidden;
   background: #f8f8f8;
+  aspect-ratio: 1 / 1; /* consistent square card media area */
 }
 
 .product-image img {
+  display: block;         /* remove inline baseline gap */
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: cover;      /* fill container without distortion */
   transition: transform 0.5s ease;
 }
 
@@ -244,7 +245,7 @@
 /* -------- Responsive Design -------- */
 @media (max-width: 768px) {
   .product-image {
-    height: 240px;
+    aspect-ratio: 1 / 1; /* keep square on tablets/large phones */
   }
   
   .icon-container {
@@ -275,7 +276,7 @@
 
 @media (max-width: 480px) {
   .product-image {
-    height: 200px;
+    aspect-ratio: 1 / 1; /* keep square on small phones like 375x667 */
   }
   
   .icon-container {
@@ -339,7 +340,7 @@
 
 /* Extra-small devices like 360x740: enforce visible icons for every card */
 @media (max-width: 380px) {
-  .product-image { height: 190px; }
+  .product-image { aspect-ratio: 1 / 1; }
   .icon-container {
     position: absolute !important;
     left: 50% !important;
