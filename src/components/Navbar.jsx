@@ -28,6 +28,7 @@ const Navbar = () => {
   const [showUserMenu, setShowUserMenu] = useState(false);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [isLoginOpen, setIsLoginOpen] = useState(false);
+  const [mobileDropdown, setMobileDropdown] = useState({ clothing: false, accessories: false });
   const { user, logout, isAuthenticated } = useAuth();
   const { getWishlistCount } = useWishlist();
   const { getCartCount } = useCart();
@@ -37,6 +38,10 @@ const Navbar = () => {
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
+    if (isMenuOpen) {
+      // Closing menu: collapse mobile dropdowns
+      setMobileDropdown({ clothing: false, accessories: false });
+    }
   };
 
 
@@ -69,55 +74,90 @@ const Navbar = () => {
     setIsMenuOpen(false);
   };
 
+  const isMobileView = () => {
+    if (typeof window === 'undefined') return false;
+    return window.matchMedia && window.matchMedia('(max-width: 968px)').matches;
+  };
+
+  const toggleDropdown = (name) => (e) => {
+    // Only toggle via click on mobile view; keep hover behavior on desktop
+    if (isMobileView()) {
+      e.preventDefault();
+      e.stopPropagation();
+      setMobileDropdown((prev) => {
+        const nextState = { clothing: false, accessories: false };
+        nextState[name] = !prev[name];
+        return nextState;
+      });
+    }
+  };
+
+  // Shared menu links (used in desktop center and mobile dropdown)
+  const closeMenuAndCollapse = () => {
+    setIsMenuOpen(false);
+    setMobileDropdown({ clothing: false, accessories: false });
+  };
+
+  const MenuLinks = ({ onNavigate }) => (
+    <>
+      <Link to="/" className="navbar-link" onClick={() => { closeMenuAndCollapse(); onNavigate && onNavigate(); }}>
+        <span className="nav-text">Home</span>
+      </Link>
+      <Link to="/shop" className="navbar-link" onClick={() => { closeMenuAndCollapse(); onNavigate && onNavigate(); }}>
+        <span className="nav-text">Shop</span>
+      </Link>
+      <div className={`dropdown ${mobileDropdown.clothing ? 'active' : ''}`}>
+        <span className="navbar-link dropdown-trigger" onClick={toggleDropdown('clothing')}>
+          <span className="nav-text">Clothing</span>
+          <FaChevronDown className="dropdown-icon" />
+        </span>
+        <div className="dropdown-content">
+          <Link to="/sarees" onClick={() => { closeMenuAndCollapse(); onNavigate && onNavigate(); }}>Sarees</Link>
+          <Link to="/dresses" onClick={() => { closeMenuAndCollapse(); onNavigate && onNavigate(); }}>Dresses</Link>
+        </div>
+      </div>
+      <div className={`dropdown ${mobileDropdown.accessories ? 'active' : ''}`}>
+        <span className="navbar-link dropdown-trigger" onClick={toggleDropdown('accessories')}>
+          <span className="nav-text">Accessories</span>
+          <FaChevronDown className="dropdown-icon" />
+        </span>
+        <div className="dropdown-content">
+          <Link to="/earrings" onClick={() => { closeMenuAndCollapse(); onNavigate && onNavigate(); }}>Earrings</Link>
+          <Link to="/necklaces" onClick={() => { closeMenuAndCollapse(); onNavigate && onNavigate(); }}>Necklaces</Link>
+          <Link to="/pendants" onClick={() => { closeMenuAndCollapse(); onNavigate && onNavigate(); }}>Pendants</Link>
+          <Link to="/rings" onClick={() => { closeMenuAndCollapse(); onNavigate && onNavigate(); }}>Rings</Link>
+          <Link to="/temple-jewellery" onClick={() => { closeMenuAndCollapse(); onNavigate && onNavigate(); }}>Temple Jewellery</Link>
+          <Link to="/bangles" onClick={() => { closeMenuAndCollapse(); onNavigate && onNavigate(); }}>Bangles</Link>
+        </div>
+      </div>
+      <Link to="/best-sellers" className="navbar-link" onClick={() => { closeMenuAndCollapse(); onNavigate && onNavigate(); }}>
+        <span className="nav-text">Best Sellers</span>
+      </Link>
+    </>
+  );
 
 
   return (
     <nav className="navbar">
       <div className="navbar-container">
-        {/* Logo - Left */}
-        <Link to="/" className="navbar-logo">
+        {/* Logo - Left (desktop); will be centered on mobile via CSS */}
+        <Link to="/" className="navbar-logo" onClick={() => setIsMenuOpen(false)}>
           <FaGem className="logo-icon" />
           <span className="logo-text">RS Collections</span>
         </Link>
 
-        {/* Menu Links - Center */}
-        <div className={`navbar-menu ${isMenuOpen ? 'active' : ''}`}> 
-          <Link to="/" className="navbar-link" onClick={() => setIsMenuOpen(false)}>
-            Home
-          </Link>
-          <Link to="/shop" className="navbar-link" onClick={() => setIsMenuOpen(false)}>
-            Shop
-          </Link>
-          <div className="dropdown">
-            <span className="navbar-link dropdown-trigger">
-              Clothing
-              <FaChevronDown className="dropdown-icon" />
-            </span>
-            <div className="dropdown-content">
-              <Link to="/sarees" onClick={() => setIsMenuOpen(false)}>Sarees</Link>
-              <Link to="/dresses" onClick={() => setIsMenuOpen(false)}>Dresses</Link>
-            </div>
-          </div>
-          <div className="dropdown">
-            <span className="navbar-link dropdown-trigger">
-              Accessories
-              <FaChevronDown className="dropdown-icon" />
-            </span>
-            <div className="dropdown-content">
-              <Link to="/earrings" onClick={() => setIsMenuOpen(false)}>Earrings</Link>
-              <Link to="/necklaces" onClick={() => setIsMenuOpen(false)}>Necklaces</Link>
-              <Link to="/pendants" onClick={() => setIsMenuOpen(false)}>Pendants</Link>
-              <Link to="/rings" onClick={() => setIsMenuOpen(false)}>Rings</Link>
-              <Link to="/temple-jewellery" onClick={() => setIsMenuOpen(false)}>Temple Jewellery</Link>
-              <Link to="/bangles" onClick={() => setIsMenuOpen(false)}>Bangles</Link>
-            </div>
-          </div>
-          <Link to="/best-sellers" className="navbar-link" onClick={() => setIsMenuOpen(false)}>
-            Best Sellers
-          </Link>
+        {/* Menu Links - Center (desktop); slides in on mobile */}
+        <div className={`navbar-menu ${isMenuOpen ? 'active' : ''}`}>
+          <MenuLinks />
         </div>
+        {/* Mobile menu backdrop (closes menu on tap) */}
+        <div
+          className={`menu-backdrop ${isMenuOpen ? 'active' : ''}`}
+          onClick={() => setIsMenuOpen(false)}
+          aria-hidden
+        />
 
-        {/* Icons - Right */}
+        {/* Icons - Right (desktop) */}
         <div className="navbar-actions">
           <div className="action-buttons">
             <button 
@@ -152,12 +192,52 @@ const Navbar = () => {
           </div>
         </div>
 
-        {/* Mobile menu hamburger */}
+        {/* Mobile hamburger (left) */}
         <div className="hamburger" onClick={toggleMenu}>
           {isMenuOpen ? (
             <FaTimes className="hamburger-icon" />
           ) : (
             <FaBars className="hamburger-icon" />
+          )}
+        </div>
+
+        {/* Mobile-only right actions */}
+        <div className="mobile-actions">
+          {!isAuthenticated ? (
+            <>
+              <button className="profile-btn" aria-label="Profile" onClick={handleLoginClick}>
+                <FaUser />
+              </button>
+              <button 
+                className="search-btn" 
+                aria-label="Search"
+                onClick={() => setIsSearchOpen(true)}
+              >
+                <FaSearch />
+              </button>
+            </>
+          ) : (
+            <>
+              <button 
+                className="search-btn" 
+                aria-label="Search"
+                onClick={() => setIsSearchOpen(true)}
+              >
+                <FaSearch />
+              </button>
+              <Link to="/wishlist" className="wishlist-btn" aria-label="Wishlist" onClick={() => setIsMenuOpen(false)}>
+                <FaHeart />
+                {getWishlistCount() > 0 && (
+                  <span className="wishlist-count">{getWishlistCount()}</span>
+                )}
+              </Link>
+              <Link to="/cart" className="cart-btn" aria-label="Cart" onClick={() => setIsMenuOpen(false)}>
+                <FaShoppingCart />
+                {getCartCount() > 0 && (
+                  <span className="cart-count">{getCartCount()}</span>
+                )}
+              </Link>
+            </>
           )}
         </div>
       </div>
