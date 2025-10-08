@@ -99,7 +99,7 @@ const AddProduct = ({ onClose, onProductAdded }) => {
     try {
       const uploadFormData = new FormData();
       selectedFiles.forEach(file => uploadFormData.append('images', file));
-  const response = await fetch('/admin/upload-images', {
+  const response = await fetch(`${import.meta.env.VITE_API_URL || ''}/admin/upload-images`, {
         method: 'POST',
         credentials: 'include',
         body: uploadFormData
@@ -146,7 +146,7 @@ const AddProduct = ({ onClose, onProductAdded }) => {
       }
 
       // Call admin API to add product
-  const response = await fetch('/admin/products', {
+  const response = await fetch(`${import.meta.env.VITE_API_URL || ''}/admin/products`, {
         method: 'POST',
         credentials: 'include',
         headers: { 'Content-Type': 'application/json' },

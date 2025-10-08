@@ -114,7 +114,7 @@ const EditProduct = ({ product, onClose, onProductUpdated }) => {
     try {
       const uploadFormData = new FormData();
       selectedFiles.forEach(file => uploadFormData.append('images', file));
-      const response = await fetch('/admin/upload-images', {
+      const response = await fetch(`${import.meta.env.VITE_API_URL || ''}/admin/upload-images`, {
         method: 'POST',
         credentials: 'include',
         body: uploadFormData
@@ -163,7 +163,7 @@ const EditProduct = ({ product, onClose, onProductUpdated }) => {
       }
 
       // Call admin API to update product
-      const response = await fetch(`/admin/products/${product.productId}`, {
+      const response = await fetch(`${import.meta.env.VITE_API_URL || ''}/admin/products/${product.productId}`, {
         method: 'PUT',
         credentials: 'include',
         headers: { 'Content-Type': 'application/json' },

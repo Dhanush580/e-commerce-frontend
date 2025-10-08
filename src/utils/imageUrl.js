@@ -23,7 +23,7 @@ export function resolveImageUrl(input) {
 	if (/^https?:\/\//i.test(u)) return u;
 	if (/^\/images\//.test(u)) return prefix(u);
 	if (/^\/uploads\//.test(u)) return prefix(u);
-	if (/^[a-f\d]{24}$/i.test(u)) return `/images/${u}`;
+	if (/^[a-f\d]{24}$/i.test(u)) return prefix(`/images/${u}`);
 	// Fallback: looks like a filename from legacy disk storage
 	if (/^image-\d{10,}-\d+\.[a-z0-9]+$/i.test(u)) return prefix(`/uploads/${u}`);
 	return u;
