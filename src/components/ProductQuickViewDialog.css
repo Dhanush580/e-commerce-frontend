@@ -28,6 +28,8 @@
   box-shadow: 0 20px 60px rgba(4, 18, 13, 0.3);
   position: relative;
   animation: pqvb-scale-in 0.3s ease-out;
+  display: flex;
+  flex-direction: column;
 }
 
 .pqvb-close-btn {
@@ -514,12 +516,18 @@
   
   .pqvb-dialog {
     max-height: 95vh;
+    height: 95dvh; /* use dynamic viewport height where supported */
     border-radius: 16px;
+    display: flex;
+    flex-direction: column;
   }
   
   .pqvb-main {
     flex-direction: column;
-    min-height: auto;
+    min-height: 0; /* allow scroll container to size */
+    flex: 1 1 auto; /* take available height */
+    overflow-y: auto; /* scroll entire content on small screens */
+    -webkit-overflow-scrolling: touch;
   }
   
   .pqvb-image-section {
@@ -539,7 +547,9 @@
   .pqvb-details-section {
     padding: 30px 24px;
     gap: 20px;
-    max-height: none;
+    max-height: none; /* don't limit; the parent (.pqvb-main) scrolls */
+    overflow: visible; /* avoid nested scrolls */
+    padding-bottom: 24px; /* ensure actions aren't cut off */
   }
   
   .pqvb-title {
@@ -593,6 +603,7 @@
   
   .pqvb-dialog {
     border-radius: 12px;
+    height: 95dvh;
   }
   
   .pqvb-image-section {
@@ -601,6 +612,7 @@
   
   .pqvb-details-section {
     padding: 24px 20px;
+    padding-bottom: 28px; /* a touch more room on very small phones */
   }
   
   .pqvb-title {
