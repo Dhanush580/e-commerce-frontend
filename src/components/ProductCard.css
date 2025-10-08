@@ -251,6 +251,7 @@
     gap: 6px;
     bottom: 12px;
     padding: 4px;
+    opacity: 1; /* Always visible on mobile */
   }
   
   .icon-btn {
@@ -279,7 +280,7 @@
   .icon-container {
     position: static;
     transform: none;
-    opacity: 1;
+    opacity: 1; /* Already visible */
     background: transparent;
     box-shadow: none;
     backdrop-filter: none;

@@ -104,10 +104,15 @@ const ProductCard = ({ product }) => {
 
   return (
     <>
-      <div className="product-card"
+      <div
+        className="product-card"
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => { setIsHovered(false); clearTimeout(hoverTimeout.current); }}
-        onClick={(e) => e.stopPropagation()}
+        onClick={() => {
+          if (typeof window !== 'undefined' && window.matchMedia && window.matchMedia('(max-width: 768px)').matches) {
+            setQuickViewOpen(true);
+          }
+        }}
       >
         <div className="product-image" style={{ position: 'relative' }}>
           {images.length > 0 && (
