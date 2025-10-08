@@ -175,6 +175,23 @@ const JewelryLandingPage = () => {
 
   return (
     <div className="wp-jewelry-landing">
+      {/* Announcement Bar (between navbar and first banner) */}
+      <section className="wp-announcement">
+        <div className="wp-announcement-viewport" aria-label="Store announcement">
+          <div className="wp-announcement-track">
+            <div className="wp-announcement-seq">
+              <span className="wp-announcement-text">welcom to RS collections! enjoy free shipping, and special deals</span>
+              <span className="wp-announcement-sep">•</span>
+            </div>
+            <span className="wp-announcement-gap" aria-hidden="true"></span>
+            <div className="wp-announcement-seq" aria-hidden="true">
+              <span className="wp-announcement-text">welcom to RS collections! enjoy free shipping, and special deals</span>
+              <span className="wp-announcement-sep">•</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Welcome Banner */}
       <section className="wp-welcome-banner">
         <div className="wp-banner-container">
