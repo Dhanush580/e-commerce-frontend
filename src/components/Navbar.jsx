@@ -138,6 +138,7 @@ const Navbar = () => {
 
 
   return (
+    <>
     <nav className="navbar">
       <div className="navbar-container">
         {/* Logo - Left (desktop); will be centered on mobile via CSS */}
@@ -252,6 +253,21 @@ const Navbar = () => {
         <Login />
       </LoginModal>
     </nav>
+
+    {/* Floating Profile Shortcut (bottom-left) when logged in */}
+    {isAuthenticated && (
+      <Link
+        to="/user"
+        className={`floating-profile ${isMenuOpen ? 'hidden' : ''}`}
+        aria-label="Open Profile"
+        onClick={() => setIsMenuOpen(false)}
+      >
+        <FaUser className="floating-profile-icon" />
+        <span className="floating-profile-email">{user?.email || 'Profile'}</span>
+      </Link>
+    )}
+
+    </>
   );
 };
 

@@ -997,3 +997,63 @@ html {
     transition: transform 0.1s ease;
   }
 }
+
+/* Floating Profile Shortcut (bottom-left) */
+.floating-profile {
+  position: fixed;
+  left: 16px;
+  bottom: 16px;
+  z-index: 900; /* below nav dropdowns but above content */
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 14px;
+  text-decoration: none;
+  background: rgba(var(--color-background-secondary), 0.95);
+  border: 1px solid rgba(var(--color-border), 0.35);
+  color: rgba(var(--color-foreground), 0.95);
+  border-radius: 12px;
+  box-shadow: var(--shadow-medium);
+  backdrop-filter: blur(2px);
+  max-width: 80vw;
+  transition: transform var(--m-duration-default) ease, box-shadow var(--m-duration-default) ease, background var(--m-duration-default) ease;
+}
+
+.floating-profile:hover {
+  transform: translateY(-2px);
+  background: rgba(var(--color-background-secondary), 1);
+  box-shadow: var(--shadow-large);
+}
+
+.floating-profile.hidden { display: none; }
+
+.floating-profile-icon {
+  width: 20px;
+  height: 20px;
+  display: block;
+  color: rgb(var(--color-button));
+}
+
+.floating-profile-email {
+  font-family: 'Inter', sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  color: rgba(var(--color-foreground), 0.95);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 52vw;
+}
+
+@media screen and (max-width: 480px) {
+  .floating-profile {
+    left: 12px;
+    bottom: 12px;
+    padding: 9px 12px;
+    gap: 8px;
+  }
+  .floating-profile-email {
+    max-width: 60vw;
+    font-size: 12px;
+  }
+}
